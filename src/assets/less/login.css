@@ -1,0 +1,26 @@
+.login-box {
+  position: fixed;
+  width: 100%;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+  height: 100%;
+  background: url('~assets/img/login_bg.jpg') no-repeat;
+  background-size: 100% 100%;
+}
+.login-box .login-area {
+  flex: 1;
+}
+.login-box .login-area > div {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px 0;
+  border: 2px solid #020202a6;
+  box-shadow: 0 0 10px 1px;
+  border-radius: 5px;
+}
+.login-box .login-area > div .field {
+  margin-top: 20px;
+}
