@@ -1,20 +1,32 @@
-html, body,div, p, input, ul, li {
+html, body,div, p, input, ul, li, textarea {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 input {
   border-style: none;
 }
-input[type=text], input[type=password] {
+input[type=text], 
+input[type=password],
+input,
+select, 
+textarea {
   padding: 10px 5px;
   border-radius: 4px;
+}
+
+input[type=checkbox] {
+  width: auto;
 }
 
 ul {
   list-style: none;
 }
 
+.error {
+  border: 1px solid red;
+}
 .graph {
   width: 400px;
   height: 400px;
@@ -23,16 +35,20 @@ ul {
 
 /* 前缀 */
 .display-flex{
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
+  // display: -webkit-box;
+  // display: -moz-box;
+  // display: -ms-flexbox;
+  // display: -webkit-flex;
   display: flex;
 }
 .flexbox(@num) {
-  -webkit-box-flex: @num;
-  -moz-box-flex: @num;
-  -ms-flex: @num;
-  -webkit-flex: @num;
+  // -webkit-box-flex: @num;
+  // -moz-box-flex: @num;
+  // -ms-flex: @num;
+  // -webkit-flex: @num;
   flex: @num;
+}
+
+.transform(@tx, @tz) {
+  transform: translateX(@tx) translateZ(@tz);
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="graph" id="line-graph">
+    <div class="graph" id="bar-graph">
       123
     </div>
     <keep-alive>
@@ -13,7 +13,7 @@
 
 var echarts = require('echarts')
   export default {
-    name: 'line-graph',
+    name: 'barGraph',
     created() {
     },
     mounted(){
@@ -21,7 +21,7 @@ var echarts = require('echarts')
     },
     methods: {
       lineChart() {
-        var myLine = echarts.init(document.getElementById('line-graph'));
+        var myLine = echarts.init(document.getElementById('bar-graph'));
          // 指定图表的配置项和数据
         var option = {
             series: {
@@ -46,7 +46,7 @@ var echarts = require('echarts')
 </script>
 
 <style rel="stylesheet/less" lang="less" scoped>
-  #line-graph {
+  .graph {
     width: 400px;
     height: 400px;
   }

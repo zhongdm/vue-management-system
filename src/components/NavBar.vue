@@ -1,12 +1,17 @@
 <template>
   <keep-alive>
     <div class="nav-bar" id="side-bar">
+      <div class="nav-top fixed-left">北京时间：{{now}}</div>
       <ul>
-        <li><a :class="{active:show==1}" :id="1" href="javascript:void" @click.prevent="showDisplay('', $event)">可视化</a></li>
+        <!-- <li><a :class="{active:show==1}" :id="1" href="javascript:void" @click.prevent="showDisplay('', $event)">可视化</a></li>
         <li><a :class="{active:show==2}" :id="2" href="javascript:void" @click.prevent="showDisplay('css-design', $event)">css揭秘</a></li>
         <li><a :class="{active:show==3}" :id="3" href="javascript:void" @click.prevent="showDisplay('', $event)">其他</a></li>
-        <li><a :class="{active:show==4}" :id="4" href="javascript:void" @click.prevent="showDisplay('', $event)">其他</a></li>
+        <li><a :class="{active:show==4}" :id="4" href="javascript:void" @click.prevent="showDisplay('settings', $event)">配置中心</a></li> -->
+        <li v-for="menu in menus" :key="menu.id">
+          <a :class="{active: currentMenu == menu.id }" href="javascript:void" :id="menu.id"  @click.prevent="showDisplay(menu.router, $event)">{{menu.name}}</a>
+        </li>
       </ul>
+      <div class="nav-top fixed-right">登录账号: {{ loginUser }} <a href="javascript:void" class="logout" @click="logout">退出</a></div>
       <div :class="navObject" @click="sidebarShow">
         <i class="icon-menu"></i>
       </div>
@@ -21,12 +26,30 @@
 </template>
 
 <script>
+  import { mapGetters, mapActions } from 'vuex'
   export default {
     name: 'nav-bar',
     data(){
       return {
-        show: 1,
-        isActive: false
+        currentMenu: '1',
+        menus: [
+        {id: 1, name: '可视化', router: ''},
+        {id: 2, name: 'css揭秘', router: 'css-design'},
+        {id: 3, name: '书籍展示', router: 'book-exhibition'},
+        {id: 4, name: '配置中心', router: 'settings'},
+        {id: 5, name: '关于', router: 'about'}
+        ],
+        // show: 1,
+        isActive: false,
+        now: "",
+        timer: null
+      }
+    },
+    created(){
+      this.getCurrentTime()
+      // setTimeout(this.getCurrentTime(), 500)
+      if(sessionStorage.activeMenu) {
+        this.currentMenu = sessionStorage.activeMenu
       }
     },
     computed: {
@@ -35,12 +58,22 @@
           'nav-mobile': true,
           active: this.isActive
         }
+      },
+
+      loginUser(){
+        if(this.$store.getters.getCurrentUser == ''){
+          this.$store.dispatch('setLoginUserToken')
+        }
+        return this.$store.getters.getCurrentUser
       }
     },
     methods: {
       showDisplay: function(msg,event) {
         if(event) {
-          this.show = event.target.id
+          this.currentMenu = event.target.id
+          this.$store.dispatch('increment', event.target.id)
+          sessionStorage.activeMenu = event.target.id
+          // this.$store.state.activeMenuId = this.show = event.target.id
         }
         arguments.length > 0 ? this.$router.push('/'+arguments[0]) : this.$router.push('/')
       },
@@ -50,6 +83,25 @@
       },
       isVisible: function(){
         document.getElementsByClassName('sidebar-mobile')[0].style.display = "none";
+      },
+      getCurrentTime() {
+        let date = new Date()
+        let year = date.getFullYear(),
+            month = date.getMonth(),
+            day = date.getDay(),
+            hour = date.getHours(),
+            minutes = date.getMinutes(),
+            seconds = date.getSeconds()
+            minutes = minutes < 10 ? "0" + minutes: minutes
+            seconds = seconds < 10 ? "0" + seconds: seconds
+        this.now = hour + ":"+minutes+":"+seconds
+        this.timer = setTimeout(()=>{
+          this.getCurrentTime()
+        }, 1000)
+      },
+      logout(){
+        this.$router.push('/login')
+        sessionStorage.clear()
       }
     }
   }
@@ -90,7 +142,21 @@
         }
         
       }
-
+    .nav-top {
+      position: absolute;
+      top: 0;
+      color: #fff;
+      min-width: 50px;
+      height: 50px;
+      line-height: 50px;
+      vertical-align: middle;
+    }
+    .fixed-left {
+      left: 10px;
+    }
+    .fixed-right {
+      right: 10px;
+    }
     .nav-mobile {
       @width: 16px;
       @height: 2px;
@@ -184,5 +250,7 @@
     }
   }
 
-  
+  .logout {
+    color: red;
+  }
 </style>

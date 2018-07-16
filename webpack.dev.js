@@ -7,25 +7,52 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const merge = require('webpack-merge')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
+
 
 // const devWebpackConfig
 module.exports = merge(baseWebpackConfig, {
   module: {
     rules: [
+    // {
+    //     test: /\.css$/, 
+    //     use: [
+    //       // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+    //       'style-loader',
+    //       'css-loader'
+    //     ]
+    //   },
       {
-        test: /\.less$/, 
+        test: /\.(le|c)ss$/, 
         use: [
           // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'style-loader',
           'css-loader',
+          // {
+          //    loader: 'postcss-loader',
+          //   options: {
+          //     sourceMap: true,
+          //     config: {
+          //       path: 'postcss.config.js'  // 这个得在项目根目录创建此文件
+          //     }
+          //   }
+          // },
+          'postcss-loader',
           'less-loader'
+
+
         ]
       }
     ]
   },
   devServer: {
+    // historyApiFallback: true,
     contentBase: path.join(__dirname, 'dist'),
+    host: '127.0.0.1',
+    disableHostCheck: true, // 解决127.0.0.1指向其他域名时出现"Invalid Host header"问题
     port: 9000
+    
   },
   devtool: '#cheap-module-eval-source-map',
   /* 提取公共内容 */
@@ -68,9 +95,11 @@ module.exports = merge(baseWebpackConfig, {
         //   enforce: true
         }
     }
-    // },
+    },
     // runtimeChunk: {
-    }
+    // },
+    namedModules: true,
+
   },
   plugins: [
     // 打包开始，清空dist文件夹
@@ -86,6 +115,19 @@ module.exports = merge(baseWebpackConfig, {
       // filename: path.posix.join('static', 'css/[name].css')
       filename: '[name].css'
       // chunkFileName: '[id].css'
+    }),
+
+    new CopyWebpackPlugin([
+      {
+        from: path.join(__dirname + '/static'),
+        to: ''
+      }
+    ]),
+    new PrerenderSPAPlugin({
+      // Required - The path to the webpack-outputted app to prerender.
+      staticDir: path.join(__dirname, 'dist'),
+      // Required - Routes to render.
+      routes: [ '/', '/login' ],
     })
   ],
   mode: 'development'

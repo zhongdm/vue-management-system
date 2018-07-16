@@ -13,7 +13,8 @@ function resolve (dir) {
 
 module.exports = {
   context: path.resolve(__dirname, './'),
-  entry: './src/main.js',
+  // entry: './src/main.js',
+  entry: './src/ast.js',
   output: {
     filename: devMode ? '[name].js' : path.posix.join('static', 'js/[name].js'),
     path: path.resolve(__dirname, 'dist'),

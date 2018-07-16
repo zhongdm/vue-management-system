@@ -1,0 +1,111 @@
+
+html,
+body,
+div,
+p,
+input,
+ul,
+li,
+textarea {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input {
+  border-style: none;
+}
+input[type=text],
+input[type=password],
+input,
+select,
+textarea {
+  padding: 10px 5px;
+  border-radius: 4px;
+}
+input[type=checkbox] {
+  width: auto;
+}
+ul {
+  list-style: none;
+}
+.error {
+  border: 1px solid red;
+}
+.graph {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+/* 前缀 */
+.display-flex {
+  display: flex;
+}
+* {
+  box-sizing: border-box;
+}
+.counter {
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  height: 50px;
+  counter-reset: section 3;
+}
+.counter .counter-dot {
+  display: inline-block;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  position: relative;
+}
+.counter .counter-dot:hover:before {
+  cursor: pointer;
+  background-color: #45b8fb;
+  transform: rotate(360deg);
+}
+.counter .counter-dot:hover:after {
+  border-color: #d2135c;
+}
+.counter .counter-dot:before {
+  counter-increment: section;
+  content: counter(section, upper-roman);
+  position: absolute;
+  left: 0;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #1a89d9;
+  color: #fff;
+  transition: all 0.4s ease-out;
+}
+.counter .counter-dot:after {
+  content: "";
+  position: absolute;
+  left: 30px;
+  width: 100%;
+  top: 50%;
+  border: 1px solid #000;
+}
+.counter .counter-dot:last-child:after {
+  display: none;
+}
+.container {
+  display: flex;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+.container .interactive {
+  flex: 1;
+}
+@media (max-width: 768px) {
+.container .interactive {
+    display: none;
+}
+}
+.container .page-content {
+  flex: 4;
+}
+
+
+/*# sourceMappingURL=14.css.map*/

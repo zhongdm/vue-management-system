@@ -1,0 +1,38 @@
+
+.login-box {
+  position: fixed;
+  width: 100%;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+  height: 100%;
+  background: url(0efcb125b4a07a26e5b4d2d6a48a06be.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+.login-box .login-area {
+  flex: 1;
+}
+.login-box .login-area > div {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px 0;
+  border: 2px solid #020202a6;
+  box-shadow: 0 0 10px 1px;
+  border-radius: 5px;
+}
+.login-box .login-area > div .message {
+  text-align: left;
+  margin: 0 auto;
+}
+.login-box .login-area > div .field {
+  margin-top: 20px;
+}
+.login-box .login-area > div input,
+.login-box .login-area > div .message {
+  width: 180px;
+}
+
+
+/*# sourceMappingURL=13.css.map*/

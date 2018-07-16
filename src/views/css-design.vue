@@ -1,20 +1,17 @@
 <template>
-  <!-- <div> -->
-    <!-- <nav-bar></nav-bar> -->
-    <div class="container">
+    <!-- <div class="container">
       <side-bar class="interactive" v-bind:posts="posts"></side-bar>
       <div class="page-content">
         <router-view></router-view>
       </div>
-    </div>
+    </div> -->
     
-  <!-- </div> -->
+  <main-content v-bind:posts="posts"></main-content>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar'
   export default {
-    name: 'home-nav-bar',
+    name: 'cssDesign',
     data: function(){
       return {
         posts: [
@@ -26,24 +23,11 @@ import NavBar from '@/components/NavBar'
         ]
       }
     },
+    created(){
+      console.info(this.posts);
+    },
     components: {
-      'nav-bar': () => import('@/components/NavBar'),
-      'side-bar': () => import('@/components/SideBar')
+      'main-content': () => import('@/views/main-content')
     }
   }
 </script>
-
-<style rel="stylesheet/less" lang="less" scoped>
-    @import '~assets/less/common.less';
-  .container {
-    .display-flex();
-    margin: 0 20px;
-    .interactive {
-      .flexbox(1);
-    }
-    .page-content {
-      .flexbox(3);
-      background-color: yellow;
-    }
-  }
-</style>

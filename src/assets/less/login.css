@@ -21,6 +21,14 @@
   box-shadow: 0 0 10px 1px;
   border-radius: 5px;
 }
+.login-box .login-area > div .message {
+  text-align: left;
+  margin: 0 auto;
+}
 .login-box .login-area > div .field {
   margin-top: 20px;
+}
+.login-box .login-area > div input,
+.login-box .login-area > div .message {
+  width: 180px;
 }

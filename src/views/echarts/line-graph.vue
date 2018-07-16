@@ -3,9 +3,6 @@
     <div class="graph" id="line-graph">
       123
     </div>
-    <keep-alive>
-    <input type="text" placeholder="123">
-    </keep-alive>
   </div>
 </template>
 
@@ -13,11 +10,25 @@
 
 var echarts = require('echarts')
   export default {
-    name: 'line-graph',
+    name: 'lineGraph',
+    data: function(){
+      return {
+        posts: [
+          {id: 1, value: '过渡与动画111'},
+          {id: 2, value: '渐变'},
+          {id: 3, value: '视觉效果'},
+          {id: 4, value: '形状'},
+          {id: 5, value: '视频&音频'}
+        ]
+      }
+    },
     created() {
     },
     mounted(){
       this.lineChart()
+    },
+    components: {
+      'main-content': () => import('@/views/main-content')
     },
     methods: {
       lineChart() {
@@ -50,7 +61,7 @@ var echarts = require('echarts')
 </script>
 
 <style rel="stylesheet/less" lang="less" scoped>
-  #line-graph {
+  .graph {
     width: 400px;
     height: 400px;
   }

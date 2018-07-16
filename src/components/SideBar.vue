@@ -1,7 +1,7 @@
 <template>
   <div class="side-bar">
     <ul>
-      <li v-for="post in posts"><a href="javascript:void(0);" @click="graphic(post.id)" >{{post.value}}</a></li>
+      <li v-for="post in postNames"><a href="javascript:void(0);" @click="graphic(post.id)" >{{post.value}}</a></li>
     </ul>
   </div>
 </template>
@@ -9,7 +9,7 @@
 <script>
   export default {
     name: "graphics",
-    props: ['posts'],
+    props: ['postNames'],
     methods: {
       graphic() {
         this.$router.push(arguments[0]);

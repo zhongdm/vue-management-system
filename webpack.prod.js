@@ -6,6 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const baseWebpackConfig = require('./webpack.base.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const merge = require('webpack-merge')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
 
 // const webpackConfig
 module.exports = merge(baseWebpackConfig, {
@@ -71,14 +72,20 @@ module.exports = merge(baseWebpackConfig, {
       'process.env': require('./config/prod.env')
     }),
 
-    // 打包开始，清空dist文件夹
-    new CleanWebpackPlugin(['dist']),
+    // // 打包开始，清空dist文件夹
+    // new CleanWebpackPlugin(['dist']),
 
     // 提取css
     new MiniCssExtractPlugin({
       // filename: path.posix.join('staticon', 'css/[name].css')
       filename: '[name].css'
       // chunkFileName: '[id].css'
+    }),
+     new PrerenderSPAPlugin({
+      // Required - The path to the webpack-outputted app to prerender.
+      staticDir: path.join(__dirname, 'dist'),
+      // Required - Routes to render.
+      routes: [ '/', '/login' ],
     })
   ],
   mode: 'production'
