@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{49:function(e,i,t){"use strict";t.r(i);var n=function(){var e=this.$createElement;return(this._self._c||e)("div",[this._v("movie")])};n._withStripped=!0;var o=t(7),s=Object(o.a)({},n,[],!1,null,null,null);s.options.__file="src\\views\\book\\movie.vue";i.default=s.exports}}]);
-//# sourceMappingURL=8.584d12b30c54d6cd4eff.js.map

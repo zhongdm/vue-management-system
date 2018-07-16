@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/components/SideBar.vue?3a02"],"names":[],"mappings":";AACA;AACA,sBAAsB;AACtB;AACA;AACA;AACA;AACA;AACA","file":"24.css","sourcesContent":["\n.side-bar[data-v-458cc95c] {\n  /* max-width: 150px; */\n  padding: 20px;\n}\n.side-bar li[data-v-458cc95c] {\n  height: 28px;\n  line-height: 28px;\n}\n"],"sourceRoot":""}
